@@ -6,6 +6,7 @@ import androidx.room.Room
 
 import com.dynamicdevs.mvvmgroupapi.R
 import com.dynamicdevs.mvvmgroupapi.databinding.ActivityMainBinding
+import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
 import com.dynamicdevs.mvvmgroupapi.model.db.PokeDatabase
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 import com.dynamicdevs.mvvmgroupapi.view.fragment.CardDisplayFragment
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pokeDatabase: PokeDatabase
     //displayfragment
     private lateinit var cardDisplayFragment: CardDisplayFragment
+    //Favorites Fragment
+    private lateinit var favoriteFragment: FragmentFavoritesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
