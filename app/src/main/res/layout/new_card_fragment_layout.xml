@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--Connect to MainActivity first half-->
 
     <EditText
         android:id="@+id/name_editText"
@@ -19,38 +18,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/idfirst_editText"
+        android:id="@+id/id_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:ems="10"
-        android:hint="Id(card set)"
         android:inputType="textPersonName"
+        android:hint="ID(Card Set)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_editText" />
 
     <EditText
-        android:id="@+id/num_button"
+        android:id="@+id/num_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:ems="10"
-        android:hint="Card Number"
         android:inputType="textPersonName"
+        android:hint="Card Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idfirst_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/id_editText" />
 
     <Button
         android:id="@+id/add_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Add Card"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/num_editText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
