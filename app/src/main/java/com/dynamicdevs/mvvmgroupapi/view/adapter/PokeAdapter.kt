@@ -45,7 +45,7 @@ class PokeAdapter(private val delegate: PokeDelegate):RecyclerView.Adapter<PokeA
                 }
                 nameTextview.text = name
                 setidTextview.text = set.id
-                cardnumTextview.text = nationalPokedexNumbers.toString()
+                cardnumTextview.text = number
 
 
             }
