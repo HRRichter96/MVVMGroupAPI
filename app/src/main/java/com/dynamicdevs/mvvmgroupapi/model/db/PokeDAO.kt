@@ -11,8 +11,8 @@ interface PokeDAO {
 
     @Insert
     fun insertNewPoke(vararg pokeCard: PokeCard)
-    //cannot have both retrofit and roomdatabase to coexist
-    @androidx.room.Query("SELECT * FROM pokes")
+
+    @androidx.room.Query("SELECT * FROM Pokes")
     fun getAllPokes(): List<PokeCard>
 
     @Delete
