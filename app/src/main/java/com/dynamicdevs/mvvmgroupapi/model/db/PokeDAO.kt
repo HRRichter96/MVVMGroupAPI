@@ -3,6 +3,7 @@ package com.dynamicdevs.mvvmgroupapi.model.db
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 
 
@@ -12,7 +13,7 @@ interface PokeDAO {
     @Insert
     fun insertNewPoke(vararg pokeCard: PokeCard)
 
-    @androidx.room.Query("SELECT * FROM Pokes")
+    @Query("SELECT * FROM pokes")
     fun getAllPokes(): List<PokeCard>
 
     @Delete

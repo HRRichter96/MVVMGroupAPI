@@ -42,7 +42,7 @@ class FavoritesFragment : Fragment() {
 
 
     fun updateFavorites(list: List<PokeCard>){
-//        adapter.list = list
+        adapter.list = list
     }
 
 

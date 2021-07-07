@@ -21,14 +21,14 @@ class CardViewModel: ViewModel() {
     fun searchCards(name: String){
         pokeRetrofit.getPoke(name).enqueue(object: Callback<PokeResponse>{
             override fun onResponse(call: Call<PokeResponse>, response: Response<PokeResponse>) {
-                Log.d("TAG_X", " " + call.request().url())
+                TODO("Not yet implemented")
                 response.body()?.let {
                     cardLiveData.postValue(it.data)
                 }
             }
 
             override fun onFailure(call: Call<PokeResponse>, t: Throwable) {
-                Log.d("TAG_X", " OOPS :<" + call.request().url())
+                TODO("Not yet implemented")
             }
 
         })

@@ -1,5 +1,6 @@
 package com.dynamicdevs.mvvmgroupapi.model.data
 
+
 data class Result(
     val abilities: List<Ability>,
     val artist: String,
@@ -26,4 +27,6 @@ data class Result(
     val tcgplayer: Tcgplayer,
     val types: List<String>,
     val weaknesses: List<Weaknesse>
+
+
 )

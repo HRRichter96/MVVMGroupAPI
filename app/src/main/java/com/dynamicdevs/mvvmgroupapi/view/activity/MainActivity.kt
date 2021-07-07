@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
         val bundle = Bundle()
         bundle.putString("POKE_ID", pokeCard.pokeID)
         bundle.putString("POKE_NAME", pokeCard.name)
-        bundle.putIntegerArrayList("POKE_NUMBER", pokeCard.number)
+        bundle.putInt("POKE_NUMBER", pokeCard.number)
         bundle.putString("POKE_URL", pokeCard.imageUrl)
         imageAddFragment.arguments = bundle
 

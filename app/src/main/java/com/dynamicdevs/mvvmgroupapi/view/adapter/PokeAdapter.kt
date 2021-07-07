@@ -58,7 +58,7 @@ class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
                     pokeCard = PokeCard(
                         set.id,
                         name,
-                        nationalPokedexNumbers.toCollection(ArrayList()),
+                        nationalPokedexNumbers.first(),
                         images.large
                     )
                     delegate.selectCard(pokeCard)
