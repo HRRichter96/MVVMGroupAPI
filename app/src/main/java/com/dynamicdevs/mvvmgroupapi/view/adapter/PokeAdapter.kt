@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.dynamicdevs.mvvmgroupapi.databinding.CardItemViewBinding
+import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.data.Result
 
 class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokeViewHolder>() {
@@ -17,7 +18,7 @@ class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokeViewHolder>() {
     inner class PokeViewHolder(val binding: CardItemViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    var pokes: List<Result> = listOf()
+    var pokes: List<Result> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()

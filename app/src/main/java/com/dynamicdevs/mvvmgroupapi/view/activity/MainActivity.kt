@@ -7,17 +7,20 @@ import androidx.room.Room
 import com.dynamicdevs.mvvmgroupapi.R
 import com.dynamicdevs.mvvmgroupapi.databinding.ActivityMainBinding
 import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
+import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.db.PokeDatabase
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 import com.dynamicdevs.mvvmgroupapi.view.fragment.CardDisplayFragment
+import com.dynamicdevs.mvvmgroupapi.view.fragment.InsertPokeFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), InsertPokeFragment.InsertDelegate {
     //database
     private lateinit var pokeDatabase: PokeDatabase
     //displayfragment
     private lateinit var cardDisplayFragment: CardDisplayFragment
     //Favorites Fragment
     private lateinit var favoriteFragment: FragmentFavoritesBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +33,16 @@ class MainActivity : AppCompatActivity() {
             PokeDatabase::class.java,
             "pokecard.db"
         ).allowMainThreadQueries().build()
+
+        readFromDB()
+    }
+
+    override fun insertNewPokeCard(pokecard: PokeCard) {
+        pokeDatabase.getPokeDao().insertNewPoke(pokecard)
+        readFromDB()
+
+    }
+    private fun readFromDB() {
+        cardDisplayFragment.updateCards(pokeDatabase.getPokeDao().getAllPokes())
     }
 }

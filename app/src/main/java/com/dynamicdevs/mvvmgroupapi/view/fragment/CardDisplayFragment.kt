@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dynamicdevs.mvvmgroupapi.databinding.CardDisplayFragmentBinding
+import com.dynamicdevs.mvvmgroupapi.model.PokeCard
+import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 
 
@@ -26,6 +28,10 @@ class CardDisplayFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cardRecyclerview.adapter = adapter
+    }
+
+    fun updateCards(list: List<Result>){
+        adapter.pokes=list
     }
 
 }
