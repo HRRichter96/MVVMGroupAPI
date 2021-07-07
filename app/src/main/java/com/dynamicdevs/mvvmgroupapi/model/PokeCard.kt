@@ -14,14 +14,8 @@ data class PokeCard(
     val name: String,
     @ColumnInfo(name = "number")
     val number: Int,
-    @ColumnInfo(name = "types")
-    val types: List<String>,
     @ColumnInfo(name = "image_Url")
-    val imageUrl: String,
-    @ColumnInfo(name = "description")
-    val description: String,
-    @ColumnInfo(name = "set_Name")
-    val setName: String
+    val imageUrl: String
 ) {
 //    constructor(pokeID: String, name: String, number: Int, types: List<String>, imageUrl: String, description: String,setName: String)
 }

@@ -3,9 +3,7 @@ package com.dynamicdevs.mvvmgroupapi.model.db
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.Query
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
-import retrofit2.http.Query
 
 
 @Dao
