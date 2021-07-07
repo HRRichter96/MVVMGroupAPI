@@ -26,7 +26,7 @@
         android:id="@+id/entry_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="com.dynamicdevs.mvvmgroupapi.view.fragment.InsertPokeFragment"
+        android:name="com.dynamicdevs.mvvmgroupapi.view.fragment.SearchPokeFragment"
         />
 
     <fragment

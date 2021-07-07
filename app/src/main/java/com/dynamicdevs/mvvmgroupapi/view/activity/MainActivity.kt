@@ -5,13 +5,8 @@ import android.os.Bundle
 import androidx.room.Room
 
 import com.dynamicdevs.mvvmgroupapi.R
-import com.dynamicdevs.mvvmgroupapi.databinding.ActivityMainBinding
-import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
-import com.dynamicdevs.mvvmgroupapi.databinding.ImageAddFragmentLayoutBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.db.PokeDatabase
-import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
-import com.dynamicdevs.mvvmgroupapi.view.fragment.FavoritesFragment
 import com.dynamicdevs.mvvmgroupapi.view.fragment.CardDisplayFragment
 import com.dynamicdevs.mvvmgroupapi.view.fragment.ImageAddFragment
 
@@ -35,7 +30,7 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
         pokeDatabase = Room.databaseBuilder(
             this,
             PokeDatabase::class.java,
-            "pokecard.db"
+            "Pokes.db"
         ).allowMainThreadQueries().build()
     }
 
@@ -52,5 +47,7 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
             .addToBackStack(imageAddFragment.tag)
             .commit()
     }
+
+
 
 }

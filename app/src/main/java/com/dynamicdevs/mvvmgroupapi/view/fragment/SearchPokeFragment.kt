@@ -17,19 +17,13 @@ import com.dynamicdevs.mvvmgroupapi.viewmodel.CardViewModel
 
 
 //first half of MainActivity, search pokecard
-class InsertPokeFragment: Fragment() {
+class SearchPokeFragment: Fragment() {
     private lateinit var binding: NewCardFragmentLayoutBinding
-    private lateinit var insertDelegate: InsertDelegate
     private val viewModel: CardViewModel by viewModels()
     private val adapter= PokeAdapter()
 
-    interface InsertDelegate{
-        fun insertNewPokeCard(pokecard: PokeCard)
-    }
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        insertDelegate = context as MainActivity
-    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,16 +43,17 @@ class InsertPokeFragment: Fragment() {
         binding.searchButton.setOnClickListener {
             val pokename=binding.nameEditText.text.toString().trim()
             binding.nameEditText.text.clear()
-            val pokeid=binding.numEditText.text.toString().trim()
+            val pokeid=binding.numEditText.text.toString().toInt()
             binding.numEditText.text.clear()
             //viewmodel
-            if (pokeid == ""){
+            if (pokeid == null){
                 viewModel.searchCards("name:".trim()+pokename)
             }else if(pokename ==""){
-
+                viewModel.searchCards("nationalPokedexNumbers:[".trim()+pokeid+"]")
             }
         }
-        viewModel.cardLiveData.observe(this,{
+        //?since this is not MainActivity
+        viewModel.cardLiveData.observe(viewLifecycleOwner,{
             adapter.pokes=it
         } )
     }
