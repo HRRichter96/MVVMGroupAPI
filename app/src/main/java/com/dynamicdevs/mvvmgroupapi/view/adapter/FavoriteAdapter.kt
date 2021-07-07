@@ -9,8 +9,7 @@ import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import kotlinx.android.synthetic.main.card_item_view.view.*
 
-//probably don't need this class may delete later...
-class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
     inner class FavoriteViewHolder(val binding: FragmentFavoritesBinding): RecyclerView.ViewHolder(binding.root)
     var list: List<PokeCard> = listOf()
     set(value) {

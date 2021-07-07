@@ -3,6 +3,7 @@ package com.dynamicdevs.mvvmgroupapi.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.lang.reflect.Constructor
 
 
 @Entity(tableName = "Pokes")
@@ -13,9 +14,9 @@ data class PokeCard(
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "number")
-    val number: Int,
+    val number: ArrayList<Int>,
     @ColumnInfo(name = "image_Url")
     val imageUrl: String
 ) {
-//    constructor(pokeID: String, name: String, number: Int, types: List<String>, imageUrl: String, description: String,setName: String)
+
 }

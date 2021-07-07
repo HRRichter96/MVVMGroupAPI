@@ -7,43 +7,45 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
+import com.dynamicdevs.mvvmgroupapi.databinding.ImageAddFragmentLayoutBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
-import com.dynamicdevs.mvvmgroupapi.model.data.Result
-import com.dynamicdevs.mvvmgroupapi.view.adapter.FavoriteAdapter
-import kotlinx.android.synthetic.main.card_item_view.view.*
 
+class ImageAddFragment: Fragment() {
 
-class FavoritesFragment : Fragment() {
+    private lateinit var binding: ImageAddFragmentLayoutBinding
 
-    private lateinit var binding: FragmentFavoritesBinding
-
-
+    interface InsertFragmentCard {
+        fun selectPokeCard(pokeCard: PokeCard)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavoritesBinding.inflate(
+
+        binding = ImageAddFragmentLayoutBinding.inflate(
             inflater,
             container,
             false
         )
         return binding.root
     }
-    private val adapter = FavoriteAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.favoriteRecyclerview.adapter = adapter
+
+        arguments?.let {
+            Glide.with(view)
+                .applyDefaultRequestOptions(RequestOptions().centerCrop())
+                .load(it.getString("POKE_URL"))
+                .into(binding.largeImageView)
+        }
+
+        binding.addButton.setOnClickListener {
 
         }
 
-
-    fun updateFavorites(list: List<PokeCard>){
-//        adapter.list = list
     }
-
 
 }
