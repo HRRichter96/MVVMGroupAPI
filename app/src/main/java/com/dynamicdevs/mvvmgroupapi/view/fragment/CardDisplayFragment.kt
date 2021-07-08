@@ -1,5 +1,6 @@
 package com.dynamicdevs.mvvmgroupapi.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.dynamicdevs.mvvmgroupapi.databinding.CardDisplayFragmentBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.data.Result
+import com.dynamicdevs.mvvmgroupapi.view.activity.MainActivity
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 
 
@@ -18,10 +20,15 @@ class CardDisplayFragment: Fragment() {
     private lateinit var displayDelegate: DisplayDelegate
     private val adapter = PokeAdapter.instance
     private lateinit var binding: CardDisplayFragmentBinding
-    private lateinit var delegate: PokeAdapter.PokeDelegate
+    private lateinit var delegate: DisplayDelegate
 
     interface DisplayDelegate {
-        fun updateList(pokes: List<Result>)
+        fun displayPokeCard(pokeCard: PokeCard)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        delegate = context as MainActivity
     }
 
     override fun onCreateView(

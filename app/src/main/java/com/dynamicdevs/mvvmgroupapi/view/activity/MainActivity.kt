@@ -5,12 +5,16 @@ import android.os.Bundle
 import androidx.room.Room
 
 import com.dynamicdevs.mvvmgroupapi.R
+import com.dynamicdevs.mvvmgroupapi.databinding.ActivityMainBinding
+import com.dynamicdevs.mvvmgroupapi.databinding.CardDisplayFragmentBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.db.PokeDatabase
 import com.dynamicdevs.mvvmgroupapi.view.fragment.CardDisplayFragment
 import com.dynamicdevs.mvvmgroupapi.view.fragment.ImageAddFragment
+import kotlinx.android.synthetic.main.card_display_fragment.*
+import kotlinx.android.synthetic.main.card_item_view.*
 
-class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
+class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard, CardDisplayFragment.DisplayDelegate {
     //database
     private lateinit var pokeDatabase: PokeDatabase
     //displayfragment
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
         setContentView(R.layout.activity_main)
 
         cardDisplayFragment =supportFragmentManager.findFragmentById(R.id.display_fragment) as CardDisplayFragment
+
 
         pokeDatabase = Room.databaseBuilder(
             this,
@@ -48,6 +53,9 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard {
             .commit()
     }
 
+    override fun displayPokeCard(pokeCard: PokeCard) {
+
+    }
 
 
 }

@@ -12,9 +12,6 @@ import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter.*
 
 class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
 
-    private lateinit var delegate: PokeDelegate
-
-
     companion object {
         val instance = PokeAdapter()
     }
@@ -63,7 +60,7 @@ class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
                         nationalPokedexNumbers.first(),
                         images.large
                     )
-                    delegate.selectCard(pokeCard)
+
                 }
 
 
