@@ -12,25 +12,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import com.dynamicdevs.mvvmgroupapi.databinding.NewCardFragmentLayoutBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
-import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.activity.MainActivity
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 
 import com.dynamicdevs.mvvmgroupapi.viewmodel.CardViewModel
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 
 //first half of MainActivity, search pokecard
 class SearchPokeFragment: Fragment() {
-
     private lateinit var binding: NewCardFragmentLayoutBinding
     private val viewModel: CardViewModel by viewModels()
-    private val adapter= PokeAdapter.instance
-    private lateinit var delegate: UpdateListDelegate
-
-    interface UpdateListDelegate {
-        fun updateList(pokes: List<Result>)
-    }
-
+    private val adapter= PokeAdapter()
 
 
 
@@ -58,18 +52,23 @@ class SearchPokeFragment: Fragment() {
             //viewmodel
             if (pokeid == ""){
                 viewModel.searchCards("name:$pokename")
-
             }else if(pokename ==""){
-                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
+                viewModel.searchCards("nationalPokedexNumbers:"+pokeid)
             }
             binding.nameEditText.text.clear()
             binding.numEditText.text.clear()
-
         }
+        //go to logcat and every card name will be listed
+        viewModel.cardLiveData.observe(viewLifecycleOwner, {
+            it.forEach{ item ->
+                Log.d("TAG_X", item.name)
+            }
+        })
+
         //?since this is not MainActivity
         viewModel.cardLiveData.observe(viewLifecycleOwner,{
             adapter.pokes=it
-//            adapter.pokes =
+
         } )
     }
 }
