@@ -14,10 +14,10 @@ class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
 
     private lateinit var delegate: PokeDelegate
 
-    constructor(pokeDelegate: PokeDelegate) : this() {
-        this.delegate = pokeDelegate
-    }
 
+    companion object {
+        val instance = PokeAdapter()
+    }
     private lateinit var pokeCard: PokeCard
 
     interface PokeDelegate {
@@ -50,6 +50,7 @@ class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
                 Glide.with(holder.itemView)
                     .applyDefaultRequestOptions(RequestOptions.circleCropTransform())
                     .load(images.large)
+                    .into(holder.binding.posterImageview)
                 holder.binding.nameTextview.text = pokes[position].name
                 holder.binding.setidTextview.text = pokes[position].set.id
                 holder.binding.cardnumTextview.text = pokes[position].number

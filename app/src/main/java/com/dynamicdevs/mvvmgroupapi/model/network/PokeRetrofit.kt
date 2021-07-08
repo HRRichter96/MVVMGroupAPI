@@ -16,7 +16,7 @@ object PokeRetrofit {
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(PokeService::class.java)
 
-    fun getPoke(search: String): Call<PokeResponse> = pokeService.getResponse(search)
+    fun getPoke(search: String): Call<PokeResponse> = pokeService.getResponse(search.replace("%3A", ":"))
 
     interface PokeService {
         @GET(END_POINT)

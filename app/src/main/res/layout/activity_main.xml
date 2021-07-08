@@ -11,12 +11,12 @@
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="9dp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/pokedex_bg"
-        android:scaleType="centerCrop"/>
+        android:elevation="8dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/pokedex_bg"-->
+<!--        android:scaleType="centerCrop"/>-->
 
     <fragment
         app:layout_constraintTop_toTopOf="parent"

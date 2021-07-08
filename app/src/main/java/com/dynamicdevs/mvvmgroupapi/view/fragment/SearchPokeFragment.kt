@@ -2,6 +2,7 @@ package com.dynamicdevs.mvvmgroupapi.view.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import com.dynamicdevs.mvvmgroupapi.databinding.NewCardFragmentLayoutBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
+import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.activity.MainActivity
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 
@@ -19,9 +21,16 @@ import com.dynamicdevs.mvvmgroupapi.viewmodel.CardViewModel
 
 //first half of MainActivity, search pokecard
 class SearchPokeFragment: Fragment() {
+
     private lateinit var binding: NewCardFragmentLayoutBinding
     private val viewModel: CardViewModel by viewModels()
-    private val adapter= PokeAdapter()
+    private val adapter= PokeAdapter.instance
+    private lateinit var delegate: UpdateListDelegate
+
+    interface UpdateListDelegate {
+        fun updateList(pokes: List<Result>)
+    }
+
 
 
 
@@ -48,16 +57,19 @@ class SearchPokeFragment: Fragment() {
 
             //viewmodel
             if (pokeid == ""){
-                viewModel.searchCards("name:".trim()+pokename)
+                viewModel.searchCards("name:$pokename")
+
             }else if(pokename ==""){
                 viewModel.searchCards("nationalPokedexNumbers:[".trim()+pokeid+"]")
             }
             binding.nameEditText.text.clear()
             binding.numEditText.text.clear()
+
         }
         //?since this is not MainActivity
         viewModel.cardLiveData.observe(viewLifecycleOwner,{
             adapter.pokes=it
+//            adapter.pokes =
         } )
     }
 }
