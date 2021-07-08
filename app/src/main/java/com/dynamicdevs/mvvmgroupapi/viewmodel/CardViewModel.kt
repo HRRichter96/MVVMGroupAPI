@@ -21,7 +21,7 @@ class CardViewModel: ViewModel() {
     fun searchCards(name: String){
         pokeRetrofit.getPoke(name).enqueue(object: Callback<PokeResponse>{
             override fun onResponse(call: Call<PokeResponse>, response: Response<PokeResponse>) {
-                TODO("Not yet implemented")
+                Log.d("TAG_X","Got here..." )
                 response.body()?.let {
                     cardLiveData.postValue(it.data)
                 }

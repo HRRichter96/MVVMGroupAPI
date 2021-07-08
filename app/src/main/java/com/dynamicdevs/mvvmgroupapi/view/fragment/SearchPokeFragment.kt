@@ -43,15 +43,17 @@ class SearchPokeFragment: Fragment() {
 
         binding.searchButton.setOnClickListener {
             val pokename=binding.nameEditText.text.toString().trim()
-            binding.nameEditText.text.clear()
-            val pokeid=binding.numEditText.text.toString().toInt()
-            binding.numEditText.text.clear()
+
+            val pokeid=binding.numEditText.text.toString().trim()
+
             //viewmodel
-            if (pokeid == null){
+            if (pokeid == ""){
                 viewModel.searchCards("name:".trim()+pokename)
             }else if(pokename ==""){
                 viewModel.searchCards("nationalPokedexNumbers:[".trim()+pokeid+"]")
             }
+            binding.nameEditText.text.clear()
+            binding.numEditText.text.clear()
         }
         //?since this is not MainActivity
         viewModel.cardLiveData.observe(viewLifecycleOwner,{
