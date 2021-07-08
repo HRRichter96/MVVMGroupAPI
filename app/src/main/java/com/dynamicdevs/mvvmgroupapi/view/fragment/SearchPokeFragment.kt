@@ -60,7 +60,7 @@ class SearchPokeFragment: Fragment() {
                 viewModel.searchCards("name:$pokename")
 
             }else if(pokename ==""){
-                viewModel.searchCards("nationalPokedexNumbers:[".trim()+pokeid+"]")
+                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
             }
             binding.nameEditText.text.clear()
             binding.numEditText.text.clear()
