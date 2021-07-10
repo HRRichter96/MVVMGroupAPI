@@ -1,5 +1,6 @@
 package com.dynamicdevs.mvvmgroupapi.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +11,8 @@ import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter.*
 
-class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
+class PokeAdapter(private val delegate: PokeDelegate) : RecyclerView.Adapter<PokeViewHolder>() {
 
-    companion object {
-        val instance = PokeAdapter()
-    }
     private lateinit var pokeCard: PokeCard
 
     interface PokeDelegate {
@@ -59,6 +57,8 @@ class PokeAdapter() : RecyclerView.Adapter<PokeViewHolder>() {
                         nationalPokedexNumbers.first(),
                         images.large
                     )
+                    delegate.selectCard(pokeCard)
+                    Log.d("TAG_X", "Clicked on item.")
 
                 }
 

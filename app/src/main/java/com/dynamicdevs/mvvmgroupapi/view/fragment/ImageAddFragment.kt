@@ -14,6 +14,22 @@ class ImageAddFragment: Fragment() {
 
     private lateinit var binding: ImageAddFragmentLayoutBinding
 
+    companion object{
+        lateinit var imageAddFragment: ImageAddFragment
+        const val RESULT_KEY = "RESULT"
+
+        fun getInstance(pokeCard: PokeCard): ImageAddFragment {
+            if(!this::imageAddFragment.isInitialized)
+                imageAddFragment = ImageAddFragment()
+
+            return imageAddFragment.also {
+                it.arguments = Bundle().also {
+                    it.putParcelable(RESULT_KEY, pokeCard)
+                }
+            }
+        }
+    }
+
     interface InsertFragmentCard {
         fun selectPokeCard(pokeCard: PokeCard)
     }
@@ -37,7 +53,7 @@ class ImageAddFragment: Fragment() {
 
         arguments?.let {
             Glide.with(view)
-                .applyDefaultRequestOptions(RequestOptions().centerCrop())
+                .applyDefaultRequestOptions(RequestOptions().fitCenter())
                 .load(it.getString("POKE_URL"))
                 .into(binding.largeImageView)
         }

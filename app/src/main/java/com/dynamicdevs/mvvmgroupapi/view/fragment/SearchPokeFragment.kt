@@ -20,11 +20,11 @@ import com.dynamicdevs.mvvmgroupapi.viewmodel.CardViewModel
 
 
 //first half of MainActivity, search pokecard
-class SearchPokeFragment: Fragment() {
+class SearchPokeFragment: Fragment(), PokeAdapter.PokeDelegate {
 
     private lateinit var binding: NewCardFragmentLayoutBinding
     private val viewModel: CardViewModel by viewModels()
-    private val adapter= PokeAdapter.instance
+    private val adapter = PokeAdapter(this)
     private lateinit var delegate: UpdateListDelegate
 
     interface UpdateListDelegate {
@@ -50,26 +50,31 @@ class SearchPokeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.searchButton.setOnClickListener {
-            val pokename=binding.nameEditText.text.toString().trim()
-
-            val pokeid=binding.numEditText.text.toString().trim()
-
-            //viewmodel
-            if (pokeid == ""){
-                viewModel.searchCards("name:$pokename")
-
-            }else if(pokename ==""){
-                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
-            }
-            binding.nameEditText.text.clear()
-            binding.numEditText.text.clear()
-
-        }
+//        binding.searchButton.setOnClickListener {
+//            Log.d("TAG_X", "Click on search button...")
+//            val pokename=binding.nameEditText.text.toString().trim()
+//
+//            val pokeid=binding.numEditText.text.toString().trim()
+//
+//            //viewmodel
+//            if (pokeid == ""){
+//                viewModel.searchCards("name:$pokename")
+//                Log.d("TAG_X", "Sent Name...")
+//
+//            }else if(pokename ==""){
+//                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
+//            }
+//            binding.nameEditText.text.clear()
+//            binding.numEditText.text.clear()
+//
+//        }
         //?since this is not MainActivity
-        viewModel.cardLiveData.observe(viewLifecycleOwner,{
-            adapter.pokes=it
-//            adapter.pokes =
-        } )
+//        Log.d("TAG_X", "SearchPokeFrag observe")
+//        viewModel.cardLiveData.observe(viewLifecycleOwner,{
+//            adapter.pokes=it
+//        } )
+    }
+
+    override fun selectCard(pokeCard: PokeCard) {
     }
 }

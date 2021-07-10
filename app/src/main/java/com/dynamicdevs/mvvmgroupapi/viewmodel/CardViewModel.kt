@@ -25,7 +25,6 @@ class CardViewModel: ViewModel() {
                 Log.d("TAG_X","Got to the CardViewModel" )
                 response.body()?.let {
                     cardLiveData.postValue(it.data)
-                    PokeAdapter.instance.pokes = it.data
                 }
             }
 
