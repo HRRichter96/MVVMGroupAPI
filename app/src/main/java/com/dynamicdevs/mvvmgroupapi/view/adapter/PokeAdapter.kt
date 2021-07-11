@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.dynamicdevs.mvvmgroupapi.databinding.CardDisplayFragmentBinding
 import com.dynamicdevs.mvvmgroupapi.databinding.CardItemViewBinding
+import com.dynamicdevs.mvvmgroupapi.databinding.FavCardItemViewBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter.*
@@ -18,6 +20,8 @@ class PokeAdapter(private val delegate: PokeDelegate) : RecyclerView.Adapter<Pok
     interface PokeDelegate {
         fun selectCard(pokeCard: PokeCard)
     }
+
+
 
     inner class PokeViewHolder(val binding: CardItemViewBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -40,6 +44,7 @@ class PokeAdapter(private val delegate: PokeDelegate) : RecyclerView.Adapter<Pok
 
 
     override fun onBindViewHolder(holder: PokeViewHolder, position: Int) {
+
         with(pokes[position]) {
             holder.binding.apply {
                 Glide.with(holder.itemView)

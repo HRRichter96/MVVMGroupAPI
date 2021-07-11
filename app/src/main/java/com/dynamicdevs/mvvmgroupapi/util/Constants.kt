@@ -6,5 +6,7 @@ class Constants {
         val BASE_URL = "https://api.pokemontcg.io/"
         const val END_POINT = "v2/cards"
         const val SEARCH_QUERY = "q"
+
+        const val DATABASE_NAME = "Pokes.db"
     }
 }

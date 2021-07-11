@@ -50,24 +50,24 @@ class SearchPokeFragment: Fragment(), PokeAdapter.PokeDelegate {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.searchButton.setOnClickListener {
-//            Log.d("TAG_X", "Click on search button...")
-//            val pokename=binding.nameEditText.text.toString().trim()
-//
-//            val pokeid=binding.numEditText.text.toString().trim()
-//
-//            //viewmodel
-//            if (pokeid == ""){
-//                viewModel.searchCards("name:$pokename")
-//                Log.d("TAG_X", "Sent Name...")
-//
-//            }else if(pokename ==""){
-//                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
-//            }
-//            binding.nameEditText.text.clear()
-//            binding.numEditText.text.clear()
-//
-//        }
+        binding.searchButton.setOnClickListener {
+            Log.d("TAG_X", "Click on search button...")
+            val pokename=binding.nameEditText.text.toString().trim()
+
+            val pokeid=binding.numEditText.text.toString().trim()
+
+            //viewmodel
+            if (pokeid == ""){
+                viewModel.searchCards("name:$pokename")
+                Log.d("TAG_X", "Sent Name...")
+
+            }else if(pokename ==""){
+                viewModel.searchCards("nationalPokedexNumbers:$pokeid")
+            }
+            binding.nameEditText.text.clear()
+            binding.numEditText.text.clear()
+
+        }
         //?since this is not MainActivity
 //        Log.d("TAG_X", "SearchPokeFrag observe")
 //        viewModel.cardLiveData.observe(viewLifecycleOwner,{

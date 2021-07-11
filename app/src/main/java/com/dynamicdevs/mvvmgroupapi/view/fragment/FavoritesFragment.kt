@@ -7,25 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dynamicdevs.mvvmgroupapi.databinding.FragmentFavoritesBinding
+import com.dynamicdevs.mvvmgroupapi.databinding.FavoriesFragmentBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
-import com.dynamicdevs.mvvmgroupapi.model.data.Result
 import com.dynamicdevs.mvvmgroupapi.view.adapter.FavoriteAdapter
-import kotlinx.android.synthetic.main.card_item_view.view.*
 
 
 class FavoritesFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavoritesBinding
+    private lateinit var binding: FavoriesFragmentBinding
 
-
+    interface DisplayFavDelegate {
+        fun displayFavPokeCard(pokeCard: PokeCard)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavoritesBinding.inflate(
+        binding = FavoriesFragmentBinding.inflate(
             inflater,
             container,
             false
@@ -37,9 +37,19 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.favoriteRecyclerview.adapter = adapter
-
         }
 
+    companion object{
+        lateinit var favoritesFragment: FavoritesFragment
+
+        fun getInstance(): FavoritesFragment {
+            if(!this::favoritesFragment.isInitialized)
+                favoritesFragment = FavoritesFragment()
+
+            return favoritesFragment
+
+        }
+    }
 
     fun updateFavorites(list: List<PokeCard>){
         adapter.list = list
