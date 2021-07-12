@@ -18,6 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="7dp"/>
+    <FrameLayout
+        android:id="@+id/delete_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="9dp"/>
 <!--    <ImageView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->

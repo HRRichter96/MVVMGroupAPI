@@ -62,7 +62,7 @@ class CardDisplayFragment: Fragment(), PokeAdapter.PokeDelegate {
 
     }
 
-
+    //pre to imageaddfragment
     override fun selectCard(pokeCard: PokeCard) {
         Log.d("TAG_X", "Engage PSelector")
         pokeSelector.openDetailsFragment(pokeCard)

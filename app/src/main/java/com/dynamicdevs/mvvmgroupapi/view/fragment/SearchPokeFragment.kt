@@ -1,15 +1,20 @@
 package com.dynamicdevs.mvvmgroupapi.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.dynamicdevs.mvvmgroupapi.R
 import com.dynamicdevs.mvvmgroupapi.databinding.NewCardFragmentLayoutBinding
 import com.dynamicdevs.mvvmgroupapi.model.PokeCard
 import com.dynamicdevs.mvvmgroupapi.model.data.Result
@@ -17,6 +22,7 @@ import com.dynamicdevs.mvvmgroupapi.view.activity.MainActivity
 import com.dynamicdevs.mvvmgroupapi.view.adapter.PokeAdapter
 
 import com.dynamicdevs.mvvmgroupapi.viewmodel.CardViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 //first half of MainActivity, search pokecard
@@ -27,11 +33,11 @@ class SearchPokeFragment: Fragment(), PokeAdapter.PokeDelegate {
     private val adapter = PokeAdapter(this)
     private lateinit var delegate: UpdateListDelegate
 
+    var navc: NavController ?=null
+
     interface UpdateListDelegate {
         fun updateList(pokes: List<Result>)
     }
-
-
 
 
     override fun onCreateView(
@@ -44,6 +50,7 @@ class SearchPokeFragment: Fragment(), PokeAdapter.PokeDelegate {
             container,
             false
         )
+
         return binding.root
     }
     //input card
@@ -73,8 +80,13 @@ class SearchPokeFragment: Fragment(), PokeAdapter.PokeDelegate {
 //        viewModel.cardLiveData.observe(viewLifecycleOwner,{
 //            adapter.pokes=it
 //        } )
+        //to favorites?
+
+
     }
 
     override fun selectCard(pokeCard: PokeCard) {
     }
+
+
 }

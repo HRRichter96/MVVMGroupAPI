@@ -1,5 +1,6 @@
 package com.dynamicdevs.mvvmgroupapi.view.activity
 
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.image_add_fragment_layout.*
 import kotlinx.android.synthetic.main.image_add_fragment_layout.view.*
 import kotlinx.android.synthetic.main.new_card_fragment_layout.*
 
-class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard, ImageAddFragment.InsertFavoriteDelegate, CardDisplayFragment.DisplayDelegate, FavoritesFragment.DisplayFavDelegate, PokeSelector {
+class MainActivity : AppCompatActivity(),ImageFragment.DeleteFavoriteDelgate, ImageAddFragment.InsertFragmentCard, ImageAddFragment.InsertFavoriteDelegate, CardDisplayFragment.DisplayDelegate, FavoritesFragment.DisplayFavDelegate, PokeSelector {
     //database
     private lateinit var pokeDatabase: PokeDatabase
     //displayfragment
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard, I
             supportFragmentManager.beginTransaction()
                 .commit()
         }
-
+        //favorites.
         searchPokeFragment.fav_button.setOnClickListener{
             Log.d("TAG_X", "Click on the goto favorites button")
             val fragment = FavoritesFragment.getInstance()
@@ -121,6 +122,22 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard, I
 
     }
 
+    override fun openFavsDetailsFragment(pokeCard: PokeCard) {
+        val fragment2 = ImageFragment.getInstance(pokeCard)
+        Log.d("TAG_X", "On ${pokeCard.imageUrl} in favorites.")
+
+        fragment2.arguments.let {
+            it?.putString("POKE_URL", pokeCard.imageUrl)
+            it?.putParcelable("POKE_CARD", pokeCard)
+        }
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.delete_frame,fragment2)
+            .addToBackStack(fragment2.tag)
+            .commit()
+
+    }
+
     override fun displayPokeCard(pokeCard: PokeCard) {
     }
 
@@ -141,6 +158,14 @@ class MainActivity : AppCompatActivity(), ImageAddFragment.InsertFragmentCard, I
     private fun readFromDB() {
         val fragment = FavoritesFragment.getInstance()
         fragment.updateFavorites(pokeDatabase.getPokeDao().getAllPokes())
+    }
+
+    override fun deleteFavorite(pokeCard: PokeCard) {
+        if(!pokeDatabase.getPokeDao().getAllPokes().contains(pokeCard)){
+            Toast.makeText(this,"This card is not in database.",Toast.LENGTH_LONG).show()
+        }else
+            pokeDatabase.getPokeDao().deletePoke(pokeCard)
+        readFromDB()
     }
 
 

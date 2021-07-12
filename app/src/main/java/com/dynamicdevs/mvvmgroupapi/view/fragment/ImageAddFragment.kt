@@ -2,6 +2,7 @@ package com.dynamicdevs.mvvmgroupapi.view.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,7 +73,7 @@ class ImageAddFragment: Fragment() {
                 .load(it?.getString("POKE_URL"))
                 .into(binding.largeImageView)
         }
-
+        //???
         binding.addButton.setOnClickListener {
             arguments.let {
                 val pokeCard: PokeCard? = it?.getParcelable("POKE_CARD")
@@ -81,7 +82,7 @@ class ImageAddFragment: Fragment() {
 
 
             }
-
+            Log.d("TAG_X", "Add Test")
         }
 
     }
