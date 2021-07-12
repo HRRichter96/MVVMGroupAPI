@@ -38,7 +38,7 @@ class FavoriteAdapter(private val delegate: FavoriteAdapter.DeleteDeletage) : Re
         with(list[position]) {
             holder.binding.apply {
                 Glide.with(holder.itemView)
-                    .applyDefaultRequestOptions(RequestOptions.circleCropTransform())
+                    .applyDefaultRequestOptions(RequestOptions.fitCenterTransform())
                     .load(list[position].imageUrl)
                     .into(holder.binding.posterImageview)
 

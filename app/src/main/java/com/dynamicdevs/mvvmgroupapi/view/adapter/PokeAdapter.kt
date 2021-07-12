@@ -48,7 +48,7 @@ class PokeAdapter(private val delegate: PokeDelegate) : RecyclerView.Adapter<Pok
         with(pokes[position]) {
             holder.binding.apply {
                 Glide.with(holder.itemView)
-                    .applyDefaultRequestOptions(RequestOptions.circleCropTransform())
+                    .applyDefaultRequestOptions(RequestOptions.fitCenterTransform())
                     .load(images.large)
                     .into(holder.binding.posterImageview)
                 holder.binding.nameTextview.text = pokes[position].name
